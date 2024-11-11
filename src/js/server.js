@@ -1,5 +1,5 @@
 import express from "express";
-import teste from "../../routes/produtos.js";
+import teste from "../../api/produtos.js";
 
 const app = express();
 app.use(express.json());

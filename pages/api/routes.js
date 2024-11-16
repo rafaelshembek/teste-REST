@@ -14,26 +14,24 @@ const readProdutos = () => {
     const data = fs.readFileSync(produtosFilePath, 'utf8');
     return JSON.parse(data);
 }
-
-router.get('/', (req, res) => {
-    const produtos = readProdutos();
-    console.log(`==========================`)
-    console.log(produtos.find(p => p.id === 2));
-    console.log(`==========================`)
-    res.json(produtos);
-})
-
-router.get('/:id', (req, res) => {
+export default function handler(req, res) {
+    const { method, query } = req;
     try {
         const produtos = readProdutos();
-        const produto = produtos.find(p => p.id === parseInt(req.params.id));
-        if (!produto) {
-            return res.status(404).json({ message: 'Produto não encontrado' });
+        if (method === "GET") {
+            if (query.id) {
+                // buscar produto pelo ID
+                const produto = produtos.find(p => p.id === parseInt(req.params.id));
+                if (!produto) {
+                    return res.status(404).json({ message: 'Produto não encontrado' });
+                }
+                return res.status(200).json(produto);
+            }
+            // Retornar todos os produtos
+            return res.status(200).json(produtos);
         }
-        res.json(produto);
+        res.status(405).json({ message: "Método não permitido" });
     } catch (err) {
-        res.status(500).json({ message: 'Erro ao buscar o produto', error: err });
+        res.status(500).json({ message: "Erro no servidor", error: err.message });
     }
-})
-
-export default router;
+}

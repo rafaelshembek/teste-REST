@@ -1,9 +1,6 @@
-import express from "express";
-// import Produtos from "../models/produto.js";
 
 import fs from "fs";
 import path from "path";
-const router = express.Router();
 
 
 // buscar o arquivo no projeto
@@ -21,7 +18,7 @@ export default function handler(req, res) {
         if (method === "GET") {
             if (query.id) {
                 // buscar produto pelo ID
-                const produto = produtos.find(p => p.id === parseInt(req.params.id));
+                const produto = produtos.find(p => p.id === parseInt(query.id));
                 if (!produto) {
                     return res.status(404).json({ message: 'Produto não encontrado' });
                 }

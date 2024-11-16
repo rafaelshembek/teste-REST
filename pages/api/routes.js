@@ -1,6 +1,9 @@
+import express from "express";
+// import Produtos from "../models/produto.js";
 
 import fs from "fs";
 import path from "path";
+const router = express.Router();
 
 
 // buscar o arquivo no projeto
@@ -11,24 +14,25 @@ const readProdutos = () => {
     const data = fs.readFileSync(produtosFilePath, 'utf8');
     return JSON.parse(data);
 }
-export default function handler(req, res) {
-    const { method, query } = req;
+router.get('/', (req, res) => {
+    const produtos = readProdutos();
+    console.log(`==========================`)
+    console.log(produtos.find(p => p.id === 2));
+    console.log(`==========================`)
+    res.json(produtos);
+})
+
+router.get('/:id', (req, res) => {
     try {
         const produtos = readProdutos();
-        if (method === "GET") {
-            if (query.id) {
-                // buscar produto pelo ID
-                const produto = produtos.find(p => p.id === parseInt(query.id));
-                if (!produto) {
-                    return res.status(404).json({ message: 'Produto não encontrado' });
-                }
-                return res.status(200).json(produto);
-            }
-            // Retornar todos os produtos
-            return res.status(200).json(produtos);
+        const produto = produtos.find(p => p.id === parseInt(req.params.id));
+        if (!produto) {
+            return res.status(404).json({ message: 'Produto não encontrado' });
         }
-        res.status(405).json({ message: "Método não permitido" });
+        res.json(produto);
     } catch (err) {
-        res.status(500).json({ message: "Erro no servidor", error: err.message });
+        res.status(500).json({ message: 'Erro ao buscar o produto', error: err });
     }
-}
+})
+
+export default router;

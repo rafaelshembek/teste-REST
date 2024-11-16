@@ -3,7 +3,7 @@ import routes from "../../pages/api/routes.js";
 
 const app = express();
 app.use(express.json());
-app.use('/produtos', routes);
+app.use('/api/produtos', routes);
 
 
 const PORT = process.env.PORT || 3000;

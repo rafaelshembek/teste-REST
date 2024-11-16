@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // buscar o arquivo no projeto
-const produtosFilePath = path.join(process.cwd(), 'produtos.json');
+const produtosFilePath = path.join(process.cwd(), 'api/produtos.json');
 
 // função para ler o arquivo
 const readProdutos = () => {

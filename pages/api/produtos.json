@@ -2,6 +2,7 @@
     {
         "id": 1,
         "nome": "Produto A",
+        "username": "Rafael Silva",
         "preco": 30.99,
         "descricao": "Descrição do Produto A",
         "categoria": "Categoria 1"
@@ -9,6 +10,7 @@
     {
         "id": 2,
         "nome": "Produto B",
+        "username": "Angela Vazquez",
         "preco": 20.50,
         "descricao": "Descrição do Produto B",
         "categoria": "Categoria 2"
@@ -16,14 +18,16 @@
     {
         "id": 3,
         "nome": "Produto C",
-        "preco": 20.50,
+        "username": "Bruno Silva",
+        "preco": 15.50,
         "descricao": "Descrição do Produto C",
         "categoria": "Categoria 3"
     },
     {
         "id": 4,
         "nome": "Produto D",
-        "preco": 20.50,
+        "username": "Antonio Rafael",
+        "preco": 9.50,
         "descricao": "Descrição do Produto D",
         "categoria": "Categoria 4"
     }

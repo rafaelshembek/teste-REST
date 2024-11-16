@@ -1,46 +1,39 @@
-// import express from "express";
+import express from "express";
 // import Produtos from "../models/produto.js";
 
 import fs from "fs";
 import path from "path";
-// const router = express.Router();
+const router = express.Router();
 
 
 // buscar o arquivo no projeto
 const produtosFilePath = path.join(process.cwd(), 'produtos.json');
 
-// função para ler os arquivo
+// função para ler o arquivo
 const readProdutos = () => {
     const data = fs.readFileSync(produtosFilePath, 'utf8');
     return JSON.parse(data);
 }
-// retorna todos os produtos
-export default async (req, res) => {
-    if (req.metho === 'GET') {
-        try {
-            const produtos = readProdutos();
-            res.status(200).json(produtos);
-        } catch (err) {
-            res.status(500).json({ mensagem: 'Erro ao lista os produtos', error: err })
+
+router.get('/', (req, res) => {
+    const produtos = readProdutos();
+    console.log(`==========================`)
+    console.log(produtos.find(p => p.id === 2));
+    console.log(`==========================`)
+    res.json(produtos);
+})
+
+router.get('/:id', (req, res) => {
+    try {
+        const produtos = readProdutos();
+        const produto = produtos.find(p => p.id === parseInt(req.params.id));
+        if (!produto) {
+            return res.status(404).json({ message: 'Produto não encontrado' });
         }
+        res.json(produto);
+    } catch (err) {
+        res.status(500).json({ message: 'Erro ao buscar o produto', error: err });
     }
-}
-// router.get('/', (req, res) => {
-//     const produtos = readProdutos();
-//     res.json(produtos);
-// })
+})
 
-// router.get('/produtos', async (req, res) => {
-//     try {
-//         const product = await Produtos.find();
-//         res.json(product);
-//     } catch (error) {
-//         res.status(500).json({ mensagem: 'Erro ao listar os produtos', error: error });
-//     }
-// })
-// router.get('/produto/:id', (req, res) => {
-//     const { id } = req.params;
-//     res.json({ id, nome: `Produto: ${id}` });
-// })
-
-// export default router;
+export default router;

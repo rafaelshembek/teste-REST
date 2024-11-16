@@ -1,9 +1,9 @@
 import express from "express";
-import teste from "../../api/produtos.js";
+import routes from "../../api/produtos.js";
 
 const app = express();
 app.use(express.json());
-app.use('/', teste);
+app.use('/produtos', routes);
 
 
 const PORT = process.env.PORT || 3000;

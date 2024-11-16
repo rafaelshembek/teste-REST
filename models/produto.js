@@ -3,19 +3,23 @@
 const produtoSchem = [
     {
         nome: {
-            typ: String,
+            type: String,
             required: true
         },
         preco: {
-            typ: Number,
+            type: Number,
             required: true
         },
         descricao: {
-            typ: String,
+            type: String,
             required: false
         },
         categoria: {
-            typ: String,
+            type: String,
+            required: false
+        },
+        img: {
+            type: String,
             required: false
         }
     }

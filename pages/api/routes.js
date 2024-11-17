@@ -16,36 +16,32 @@ const readProdutos = () => {
 // ROTA PRINCIPAL
 router.get('/', (req, res) => {
     try {
-        const produtos = readProdutos();
-        const { username, preco } = req.query;
+        const peoples = readProdutos();
+        const { nome, profissao } = req.query;
 
-        if (!username && !preco) {
-            return res.status(404).json({ message: 'username ou preco sem informação.' })
+        if (!nome && !profissao) {
+            return res.status(404).json({ message: 'nome ou profissão não foi informado.' })
         }
 
-        if (username) {
-            if (username.trim() === "") {
+        if (nome) {
+            if (nome.trim() === "") {
                 return res.status(404).json({ message: 'Usuário não encontrado.' });
             }
-            const user = produtos.find(p => p.username && p.username.toLowerCase() === username.toLocaleLowerCase());
+            const user = peoples.find(p => p.nome && p.nome.toLowerCase() === nome.toLowerCase());
             if (!user) {
-                return res.status(404).json({ message: 'Usuário não encontrado.' });
+                return res.status(404).json({ message: 'Dados não informado.' });
             }
             return res.json(user);
         }
-        if (preco) {
-            const precoFloat = parseFloat(preco);
-            if (isNaN(precoFloat)) {
-                return res.status(400).json({ message: 'Preço inválido. Deve ser um número.' });
+        if (profissao) {
+            const user = peoples.find(p => p.profissao && p.profissao.toLowerCase() === profissao.toLowerCase());
+            if (!profissao) {
+                return res.status(404).json({ message: 'Profissão não encontrado.' });
             }
-            const produtoComPreco = produtos.find(p => p.preco === precoFloat);
-            if (produtoComPreco.length === 0) {
-                return res.status(400).json({ message: 'Nenhum produto encontrado com esse preço' });
-            }
-            return res.json(produtoComPreco);
+            return res.json(user);
         }
         // CASO NENHUM FILTRO SEJA APLICADO, RETORNA TODOS OS PRODUTOS
-        return res.json(produtos);
+        return res.json(peoples);
     } catch (err) {
         res.status(500).json({ message: 'Erro ao processar a requisição. dados informado não encontrado' });
     }
@@ -63,21 +59,21 @@ router.get('/', (req, res) => {
     // }
     // res.json(produtos);
 })
-router.get('/allprodutos', (req, res) => {
-    const produtos = readProdutos();
-    return res.json(produtos);
+router.get('/all', (req, res) => {
+    const peoples = readProdutos();
+    return res.json(peoples);
 });
 router.get('/:id', (req, res) => {
     try {
-        const produtos = readProdutos();
-        const produto = produtos.find(p => p.id === parseInt(req.params.id));
-        console.log(produto);
-        if (!produto) {
-            return res.status(404).json({ message: 'Produto não encontrado' });
+        const peoples = readProdutos();
+        const people = peoples.find(p => p.id === parseInt(req.params.id));
+        console.log(people);
+        if (!people) {
+            return res.status(404).json({ message: 'Id não encontrado' });
         }
-        res.json(produto);
+        res.json(people);
     } catch (err) {
-        res.status(500).json({ message: 'Erro ao buscar o produto', error: err });
+        res.status(500).json({ message: 'Erro ao buscar o usuario', error: err });
     }
 })
 

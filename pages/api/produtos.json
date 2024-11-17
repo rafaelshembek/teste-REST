@@ -1,34 +1,62 @@
 [
     {
         "id": 1,
-        "nome": "Produto A",
-        "username": "Rafael Silva",
-        "preco": 30.99,
-        "descricao": "Descrição do Produto A",
-        "categoria": "Categoria 1"
+        "nome": "Joao",
+        "idade": 25,
+        "profissao": "Desenvolvedor"
     },
     {
         "id": 2,
-        "nome": "Produto B",
-        "username": "Angela Vazquez",
-        "preco": 20.50,
-        "descricao": "Descrição do Produto B",
-        "categoria": "Categoria 2"
+        "nome": "Maria",
+        "idade": 30,
+        "profissao": "Designer"
     },
     {
         "id": 3,
-        "nome": "Produto C",
-        "username": "Bruno Silva",
-        "preco": 15.50,
-        "descricao": "Descrição do Produto C",
-        "categoria": "Categoria 3"
+        "nome": "Carlos",
+        "idade": 28,
+        "profissao": "Analista de Dados"
     },
     {
         "id": 4,
-        "nome": "Produto D",
-        "username": "Antonio Rafael",
-        "preco": 9.50,
-        "descricao": "Descrição do Produto D",
-        "categoria": "Categoria 4"
+        "nome": "Ana",
+        "idade": 22,
+        "profissao": "Estudante"
+    },
+    {
+        "id": 5,
+        "nome": "Roberto",
+        "idade": 35,
+        "profissao": "Gerente de Projetos"
+    },
+    {
+        "id": 6,
+        "nome": "Fernanda",
+        "idade": 27,
+        "profissao": "Arquiteta"
+    },
+    {
+        "id": 7,
+        "nome": "Lucas",
+        "idade": 24,
+        "profissao": "Engenheiro de Software"
+    },
+    {
+        "id": 8,
+        "nome": "Paula",
+        "idade": 29,
+        "profissao": "Marketing Digital"
+    },
+    {
+        "id": 9,
+        "nome": "Gustavo",
+        "idade": 26,
+        "profissao": "Vendedor"
+    },
+    {
+        "id": 10,
+        "nome": "Clara",
+        "idade": 31,
+        "profissao": "Cientista de Dados"
     }
 ]
